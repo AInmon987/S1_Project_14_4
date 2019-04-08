@@ -5,8 +5,8 @@
    Tutorial 12
    Case Problem 4
 
-   Author: 
-   Date:   
+   Author: Austin Inmon
+   Date:   4.08.19
    
    Filename: gi_sort.js
    
@@ -61,14 +61,14 @@
 
 
 function dataSort2D(a, b) {
-   if (isNaN(parseFloat(a[sortIndex])) === false) {
-      return (a[sortIndex] - b[sortIndex])*sortDirection;
-   } else {
-      var astring = a[sortIndex].toLowerCase();
-      var bstring = b[sortIndex].toLowerCase();
-           
-      if (bstring > astring) return -sortDirection;
-      if (bstring < astring) return sortDirection;
-      return 0;
-   }
+      if (isNaN(parseFloat(a[sortIndex])) === false) {
+            return (a[sortIndex] - b[sortIndex]) * sortDirection;
+      } else {
+            var astring = a[sortIndex].toLowerCase();
+            var bstring = b[sortIndex].toLowerCase();
+
+            if (bstring > astring) return -sortDirection;
+            if (bstring < astring) return sortDirection;
+            return 0;
+      }
 }
