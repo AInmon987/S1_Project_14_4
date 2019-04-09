@@ -52,10 +52,114 @@
 
 */
 
+var tableData = [];
+
+var dataCategories = [];
+
+var sortIndex = 0;
+
+var sortDirection = 1;
+
+window.addEventListener("load", function () {
+      defineDataArray();
+      tableData();
+      defineColumns();
+})
+
+function defineDataArray() {
+      var tableRows = document.querySelectorAll("table.sortable tbody tr");
+
+      for (var i = 0; i < tableRows.length; i++) {
+
+            var rowCells = tableRows[i].children;
+
+            var rowValues = new Array(rowCells.length);
+
+            for (var a = 0; a < rowCells.length; a++) {
+                  rowValues[a] = rowCells[a].textContent;
+
+            }
+            tableData.push(rowValues);
+      }
+      tableData[i].sort(dataSort2D);
+}
+
+function writeTableData() {
+      var newTableBody = document.createElement("tbody");
+
+      for (var i = 0; i < array.length; i++) {
+
+
+      }
+
+}
 
 
 
+function defineColumns() {
+      var embedStyle = document.createElement("style");
 
+      document.head.appendChild(embedStyle);
+
+      embedStyle.instertRule(
+            "table.sortable thead tr th {\
+                  cursor: pointer;\
+            }");
+
+      embedStyle.insertRule(
+            "table.sortable thead tr th: :after {\
+                  content: '\\0a0';\
+                  font-family: monospace;\
+                  margin-left: 5px;\
+            }");
+
+      embedStyle.insertRule(
+            "table.sortable thead tr th:nth-of-type()1::after{\
+                  content: '\\25b2';\
+            }");
+
+      var theads = document.querySelectorAll("table.sortable thead th");
+
+      for (var i = 0; i < theads.length; i++) {
+            var text = theads[i].innerHTML;
+
+            dataCategories.push(text);
+
+            theads[i].addEventListener("click", columnSort);
+
+      }
+}
+
+function columnSort(e) {
+      var columnText = e.target.textcontent;
+
+      var columnIndex = dataCategories[i].indexOf(columnText);
+
+      if (columnIndex === sortIndex) {
+            sortDirection *= -1;
+      } else {
+            sortIndex = columnIndex;
+      }
+
+      var columnNumber = columnIndex + 1;
+
+      var columnStyles = document.styleSheets[document.styleSheets.length - 1];
+
+      if (sortDirection === 1) {
+            columnStyles.insertRule(
+                  "table.sortable thead tr th:nth-of-type" + columnNumber + "::after {\
+                        content: '\\25b2';\
+                  }");
+      } else {
+            columnStyles.insertRule(
+                  "table.sortable thead tr th:nth-of-type" + columnNumber + "::after {\
+                        content: '\\25bc';\
+                  }");
+      }
+      tableData.sort(dataSort2D);
+
+      writeTableData();
+}
 
 
 
